@@ -5,21 +5,25 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MainfestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    publicPath: '/'
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].bundle.js'
   },
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
   module: {
     rules: [
-      { test: '\/.css$/', use: [ 'style-loader', 'css-loader' ] }
+      { 
+        test: '\/.css$/', 
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: '/\.js$/',
+        exclude: /(node_modules)/,
+        use: [ 'babel-loader' ]
+      }
     ]
   },
   plugins: [
@@ -28,7 +32,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       _join: ['loadsh', 'join']
     }),
-    new MainfestPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new MainfestPlugin()
   ]
 }
