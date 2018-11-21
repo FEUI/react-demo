@@ -8,10 +8,10 @@ module.exports = {
     {value: 'docs',     name: 'docs:     文档修改'},
     {value: 'style',    name: 'style:    代码格式修改\n            (white-space, formatting, missing semi-colons, etc)'},
     {value: 'refactor', name: 'refactor: 代码重构'},
-    {value: 'perf',     name: 'perf:     A code change that improves performance'},
+    {value: 'perf',     name: 'perf:     性能优化改进'},
     {value: 'test',     name: 'test:     添加测试用例'},
-    {value: 'chore',    name: 'chore:    Changes to the build process or auxiliary tools\n            and libraries such as documentation generation'},
-    {value: 'revert',   name: 'revert:   Revert to a commit'},
+    {value: 'chore',    name: 'chore:    构建过程或者辅助的工具改变'},
+    {value: 'revert',   name: 'revert:   撤销某个commit提交'},
     {value: 'WIP',      name: 'WIP:      Work in progress'}
   ],
 
