@@ -8,5 +8,6 @@
       "uglify": true
     }],
     "react"
-  ]
+  ],
+  "plugins": ["react-hot-loader/babel"]
 }

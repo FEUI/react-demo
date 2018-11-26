@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MainfestPlugin = require('webpack-manifest-plugin')
+const WebpackBar = require('webpackbar')
 
 module.exports = {
   entry: {
@@ -13,16 +14,27 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       { 
-        test: '\/.css$/', 
+        test: '/\.css$/', 
         use: [ 'style-loader', 'css-loader' ]
       },
       {
-        test: '/\.js$/',
-        exclude: /(node_modules)/,
-        use: [ 'babel-loader' ]
+        test: '/\.(js|jsx)$/',
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react']
+            }
+          }
+        ]
       }
     ]
   },
@@ -32,6 +44,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       _join: ['loadsh', 'join']
     }),
-    new MainfestPlugin()
+    new MainfestPlugin(),
+    new WebpackBar()
   ]
 }

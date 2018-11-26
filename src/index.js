@@ -1,10 +1,31 @@
-import _ from 'lodash'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 
-function component () {
-  const element = document.createElement('div')
-
-  element.innerHTML = _.join(['Hello', 'webpack277'], ' ')
-  return element
+class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      show: false
+    }
+    this.toggleHandler = this.toggleHandler.bind(this)
+  }
+  toggleHandler () {
+    this.setState({
+      show: !this.state.show
+    })
+  }
+  render () {
+    const { show } = this.state
+    return (
+      // <div onClick={this.toggleHandler()}>切换展示{show ? '关闭' : '开启'}</div>
+      <div>11</div>
+    )
+  }
 }
 
-document.body.appendChild(component())
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)
+
+module.hot.accept()
